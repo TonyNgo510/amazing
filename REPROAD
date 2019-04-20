@@ -1,0 +1,69 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main() 
+{
+//	freopen("input.txt", "r", stdin);
+ 
+	int t, n, k, arr[10000], ans, count, temp;
+ 
+	cin >> t;
+	for (int testcase = 0; testcase < t; testcase++) 
+	{
+		//khoi tao gia tri
+		ans = 0;
+		count = 0;
+ 
+		cin >> n >> k;
+ 
+		//Doc du lieu
+		for (int i = 0; i < n; i++) 
+		{	
+			cin >> arr[i];
+		}
+		//ket thuc doc du lieu
+ 
+		//Xu ly
+		for (int i = 0; i < n; i++) //Tinh tu doan duong thu i
+		{	
+ 
+			temp = k; // gan so tien k vao bien tam
+			count = 0;  // bien dem
+ 
+			//Dem so doan duong bi hong tinh tu doan i
+			for(int j=i; j<n; j++)
+			{
+ 
+				//neu het tien va gap doan duong hong thi dung
+				// vi het tien ko sua dc nua
+				if(temp <= 0 && arr[j] == 0)
+				{
+					break;
+				}
+ 
+				//Neu doan duoc nay ko bi hong thi van dem len 1
+				if(arr[j] == 1)
+				{
+					count++;
+				}
+				else if(arr[j] == 0 && temp > 0) // neu doan duong nay bi hong va van con tien thì dem
+				{
+					count++; // dem len 1 doan duong
+					temp--; // tru so tien sau khi sua chua
+				}
+ 
+				// so sanh xem doan duong da la doan dai nhat chua?
+				if(count > ans)
+				{
+					ans = count;
+				}
+			}
+		}
+ 
+		// in ket qua ra man hinh
+		cout << ans << endl;
+	}
+ 
+	return 0;
+}
